@@ -119,7 +119,7 @@ function mautic_block_view($delta = '') {
       $attrs['url']       = $current_url;
 
       $encodedAttrs       = urlencode(base64_encode(serialize($attrs)));
-      $mautic_base_url    = trim(variable_get('mautic_base_url', ''));
+      $mautic_base_url    = trim(variable_get('mautic_base_url', ''), ' /');
 
       if (variable_get('mautic_load_form_js', 0)) {
         $formJs           = '<script src="%1$s/media/js/mautic-form.js"></script>';
@@ -127,7 +127,7 @@ function mautic_block_view($delta = '') {
         $formJs           = '';
       }
 
-      $block['content']   = sprintf('<img style="display:none" src="%s/mtracking.gif?d=%s" />' . $formJs, $mautic_base_url, $encodedAttrs);
+      $block['content']   = sprintf('<img style="display:none" src="%s/mtracking.gif?d=%s" alt="mautic is open source marketing automation"/>' . $formJs, $mautic_base_url, $encodedAttrs);
 
       return $block;
       break; 
